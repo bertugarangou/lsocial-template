@@ -11,7 +11,7 @@ use Salle\LSocial\Middleware\StartSessionMiddleware;
 /** @var TYPE_NAME $app */
 $app->add(StartSessionMiddleware::class);
 
-$app->get('/sign-up', RegisterController::class . ":showSign-up")->setName('sign-upShow');
+$app->get('/sign-up', RegisterController::class . ":showSign-up");
 $app->post('/sign-up', RegisterController::class . ":sendSign-up")->setName('sign-upSend');
 
 $app->get('/sign-in', LoginController::class . ":showLoginFormAction");
