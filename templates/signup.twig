@@ -16,15 +16,16 @@
 
 
         <label for="passwd"><b>Password: </b></label>
-        <input type="password" name="passwd" value="">
+        <input type="password" name="passwd" value="{% if formData.passwd %}{{ formData.passwd }}{% endif %}">
+        <!--No s'hauria de guardar la contra però l'enunciat diu que tot-->
 
 
         <label for="passwd2"><b>Repeat: </b></label>
-        <input type="password" name="passwd2" value=""><!--Les contrassenyes no es guarden en recarregar per seguretat-->
+        <input type="password" name="passwd2" value="{% if formData.passwd2 %}{{ formData.passwd2 }}{% endif %}">
         {% if formErrors.passwd %}
             <p style="color: red;">{{ formErrors.passwd }}</p>
         {% endif %}
-
+        <!--No s'hauria de guardar la contra però l'enunciat diu que tot. Estic trist ^^'.-->
 
         <label for="birth">Birthdate (optional): </label>
         <input type="date" id="birth" name="birth" value="{% if formData.birth %}{{ formData.birth }}{% endif %}">
