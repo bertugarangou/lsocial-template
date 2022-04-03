@@ -42,7 +42,7 @@ final class RegisterController{
             $errors['email'] = 'Only emails from the domain @salle.url.edu are accepted.';
         }else if($this->SQLRepo->checkEmailExists($data['email']) == true){
             $errors['email'] = 'User already exists. Email must be unique.';
-        }#TODO: bbdd mirar si està repetit
+        }
 
 
         #mirar contra
@@ -60,7 +60,6 @@ final class RegisterController{
                 $errors['birth'] = 'Birthday is invalid.';
             }else if($this->validateAge($data['birth']) == false){
                 $errors['birth'] = 'Sorry, you are underage.';
-                var_dump($data['birth']);
             }
         }
 
