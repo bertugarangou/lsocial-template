@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 final class LoginController{
     public function __construct(private Twig $twig){}
 
-    public function showForm(Request $request, Response $response): Response{
+    public function nose(Request $request, Response $response): Response{
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
@@ -23,6 +23,13 @@ final class LoginController{
                 'formMethod' => "POST"
             ]
         );
+    }
+
+    public function showForm(Request $request, Response $response)
+    {
+        return $this->twig->render(
+            $response,
+            'login.twig',[]);
     }
 
     public function handleFormSubmission(Request $request, Response $response): Response{

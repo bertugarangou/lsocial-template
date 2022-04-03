@@ -1,0 +1,39 @@
+{% extends 'base.twig' %}
+
+{% block title %}Sign-up{% endblock %}
+
+{% block content %}
+    <form action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8">
+
+
+        <label for="email"><b>Email: </b></label>
+        <input type="text" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}">
+        {% if formErrors.email %}
+            <p style="color: red;">{{ formErrors.email }}</p>
+        {% endif %}
+
+
+
+
+        <label for="passwd"><b>Password: </b></label>
+        <input type="password" name="passwd" value="">
+
+
+        <label for="passwd2"><b>Repeat: </b></label>
+        <input type="password" name="passwd2" value=""><!--Les contrassenyes no es guarden en recarregar per seguretat-->
+        {% if formErrors.passwd %}
+            <p style="color: red;">{{ formErrors.passwd }}</p>
+        {% endif %}
+
+
+        <label for="birth">Birthdate (optional): </label>
+        <input type="date" id="birth" name="birth" value="{% if formData.birth %}{{ formData.birth }}{% endif %}">
+        {% if formErrors.birth %}
+            <p style="color: red;">{{ formErrors.birth }}</p>
+        {% endif %}
+
+
+
+        <input type="submit" value="Send">
+    </form>
+{% endblock %}

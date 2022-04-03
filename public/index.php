@@ -23,13 +23,3 @@ $app->addErrorMiddleware(true, false, false); #error middleware EXTERIOR
 require_once __DIR__ . '/../config/routing.php';
 
 $app->run();
-
-
-
-# Router -> Controladors -> model -> bbdd/fitxers/dao
-#               L       -> vista
-
-
-
-# PC CLIENT <---->  ( errorMdlwr ( routingMdlwr (  twigMdlwr ( webapp ) ) ) )
-#error=IN/OUT   routing=IN      twig=OUT

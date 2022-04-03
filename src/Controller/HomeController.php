@@ -17,7 +17,7 @@ final class HomeController
         $this->twig = $twig;
     }
 
-    public function apply(Request $request, Response $response)
+    public function showHome(Request $request, Response $response)
     {
         return $this->twig->render(
             $response,

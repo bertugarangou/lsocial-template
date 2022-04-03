@@ -11,18 +11,25 @@ use Psr\Http\Message\ResponseInterface as Response;
 final class RegisterController{
     public function __construct(private Twig $twig){}
 
-    public function showForm(Request $request, Response $response): Response{
+    public function nose(Request $request, Response $response): Response{
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
         return $this->twig->render(
             $response,
-            'login.twig',
+            'signup.twig',
             [
                 'formAction' => $routeParser->urlFor("handle-form"),
                 'formMethod' => "POST"
             ]
         );
+    }
+
+    public function showForm(Request $request, Response $response)
+    {
+        return $this->twig->render(
+            $response,
+            'signup.twig',[]);
     }
 
     public function handleFormSubmission(Request $request, Response $response): Response{
