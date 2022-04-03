@@ -20,5 +20,11 @@ final class MySQLUserRepository implements UserRepository
 
     public function save(User $user): void
     {
+        # aquí el codi del save
+    }
+    public function checkEmailExists(string $email): bool{
+        # mirar si el mail ja existeix true o false
+
+        return false;
     }
 }

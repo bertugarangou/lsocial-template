@@ -10,12 +10,14 @@ final class User
     private int $id;
     private string $email;
     private string $password;
+    private DateTime $birthday;
     private DateTime $createdAt;
     private DateTime $updatedAt;
 
     public function __construct(
         string   $email,
         string   $password,
+        DateTime $birthday,
         DateTime $createdAt,
         DateTime $updatedAt
     )
@@ -24,6 +26,13 @@ final class User
         $this->password = $password;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+
+        if(strlen($birthday->format('Y-m-d H:i:s')) == 0){#si no hi ha birthday
+            $birthday = NULL;
+        }
+        $this->birthday = $birthday;
+
+
     }
 
     public function id(): int
@@ -55,5 +64,9 @@ final class User
     public function updatedAt(): DateTime
     {
         return $this->updatedAt;
+    }
+    public function birthday(): DateTime
+    {
+        return $this->birthday;
     }
 }

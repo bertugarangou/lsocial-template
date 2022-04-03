@@ -15,29 +15,6 @@ use Slim\Views\Twig;
 
 $container = new Container(); # init container
 
-$container->set(
-    'view', #nom creador de vistes
-    function () {
-        return Twig::create(__DIR__ . '/../templates', ['cache' => false]);
-    }
-);
-
-$container->set(
-    LoginController::class,
-    function (Container $c) {
-        $controller = new LoginController($c->get("view"));
-    return $controller;
-    }
-);
-
-$container->set(
-    RegisterController::class,
-    function (Container $c) {
-        $controller = new RegisterController($c->get("view"));
-        return $controller;
-    }
-);
-
 $container->set('db', function () {
     return PDOSingleton::getInstance(
         $_ENV['MYSQL_USER'],
@@ -48,6 +25,35 @@ $container->set('db', function () {
     );
 });
 
+$container->set(UserRepository::class, function (ContainerInterface $container) {
+    return new MySQLUserRepository($container->get('db'));
+});
+
+$container->set(
+    'view', #nom creador de vistes
+    function () {
+        return Twig::create(__DIR__ . '/../templates', ['cache' => false]);
+    }
+);
+
+$container->set(
+    LoginController::class,
+    function (Container $c) {
+        $controller = new LoginController($c->get("view"), $c->get(UserRepository::class));
+    return $controller;
+    }
+);
+
+$container->set(
+    RegisterController::class,
+    function (Container $c) {
+        $controller = new RegisterController($c->get("view"), $c->get(UserRepository::class));
+        return $controller;
+    }
+);
+
+
+
 $container->set(
     CreateUserController::class,
     function (Container $c) {
@@ -56,9 +62,7 @@ $container->set(
     }
 );
 
-$container->set(UserRepository::class, function (ContainerInterface $container) {
-    return new MySQLUserRepository($container->get('db'));
-});
+
 
 $container->set(
     CookieController::class,

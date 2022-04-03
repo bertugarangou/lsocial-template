@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Salle\LSocial\Model\Repository; //Take care if you added the Repository folder inside Model folder or outside that
+namespace Salle\LSocial\Model\Repository;
 
 use PDO;
 

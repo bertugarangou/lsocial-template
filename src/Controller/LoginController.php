@@ -3,15 +3,16 @@ declare(strict_types=1);
 
 namespace Salle\LSocial\Controller;
 
+use Salle\LSocial\Model\Repository\MySQLUserRepository;
 use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 final class LoginController{
-    public function __construct(private Twig $twig){}
+    public function __construct(private Twig $twig,private MySQLUserRepository $SQLRepo){}
 
-    public function nose(Request $request, Response $response): Response{
+    public function showForm(Request $request, Response $response): Response{
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
@@ -19,18 +20,12 @@ final class LoginController{
             $response,
             'login.twig',
             [
-                'formAction' => $routeParser->urlFor("handle-form"),
+                'formAction' => $routeParser->urlFor("loginPOST"),
                 'formMethod' => "POST"
             ]
         );
     }
 
-    public function showForm(Request $request, Response $response)
-    {
-        return $this->twig->render(
-            $response,
-            'login.twig',[]);
-    }
 
     public function handleFormSubmission(Request $request, Response $response): Response{
         $data = $request->getParsedBody();
@@ -49,7 +44,7 @@ final class LoginController{
             [
                 'formErrors' => $errors,
                 'formData' => $data,
-                'formAction' => $routeParser->urlFor("handle-form"),
+                'formAction' => $routeParser->urlFor("loginPOST"),
                 'formMethod' => "POST"
             ]
         );
