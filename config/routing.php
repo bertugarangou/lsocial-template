@@ -13,10 +13,10 @@ $app->add(StartSessionMiddleware::class);
 
 $app->get('/', HomeController::class . ':showHome')->setName('home');
 
-$app->get('/sign-up', RegisterController::class . ":showForm");
+$app->get('/sign-up', RegisterController::class . ":showForm")->setName('registerGET');
 $app->post('/sign-up', RegisterController::class . ":handleFormSubmission")->setName('registerPOST');
 
-$app->get('/sign-in', LoginController::class . ":showForm");
+$app->get('/sign-in', LoginController::class . ":showForm")->setName('loginGET');
 $app->post('/sign-in', LoginController::class . ":handleFormSubmission")->setName('loginPOST');
 
 $app->post('/user', CreateUserController::class . ":apply")->setName('create_user');

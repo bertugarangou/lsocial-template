@@ -62,4 +62,16 @@ final class MySQLUserRepository implements UserRepository
         return true;
 
     }
+
+    public function checkPasswd(string $passwd, string $email):int{
+        $stat = $this->database->connection()->prepare('SELECT password, id FROM users WHERE email=?');
+        $stat->bindParam(1, $email, PDO::PARAM_STR);
+        $stat->execute();
+        $res = $stat->fetch();
+        $passwd = hash('sha256', $passwd, false);
+        if(strcmp($passwd, $res[0]) != 0){
+            return -1;
+        }
+        return $res[1];
+    }
 }

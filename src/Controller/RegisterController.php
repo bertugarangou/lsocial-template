@@ -22,8 +22,8 @@ final class RegisterController{
             $response,
             'signup.twig',
             [
-                'formAction' => $routeParser->urlFor("registerPOST"),
-                'formMethod' => "POST"
+                'formAction' => $routeParser->urlFor("registerGET"),
+                'formMethod' => "GET"
             ]
         );
     }
@@ -62,8 +62,6 @@ final class RegisterController{
                 $errors['birth'] = 'Sorry, you are underage.';
             }
         }
-
-
 
         if(count($errors) == 0){#està nais 👌
 
