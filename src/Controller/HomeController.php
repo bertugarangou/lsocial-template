@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-
+#TODO: tarda molt a carregar totes les pàgines
 namespace Salle\LSocial\Controller;
 
 use Psr\Http\Message\ResponseInterface as Response;
