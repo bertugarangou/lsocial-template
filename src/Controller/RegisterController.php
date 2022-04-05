@@ -23,7 +23,7 @@ final class RegisterController{
             'signup.twig',
             [
                 'formAction' => $routeParser->urlFor("registerGET"),
-                'formMethod' => "GET"
+                'formMethod' => "POST"
             ]
         );
     }
@@ -68,9 +68,11 @@ final class RegisterController{
             $user = new User($data['email'], $data['passwd'], $data['birth']);
             $this->SQLRepo->save($user);
 
-            return $this->twig->render($response,'login.twig',[
-                'formMethod' => "GET"
-            ]); #TODO: canviar link
+
+            return $response
+                ->withHeader('Location', '/sign-in')
+                ->withStatus(302);
+
 
         }else {#errors sad uwu
 
