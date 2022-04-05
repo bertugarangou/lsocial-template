@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 use DI\Container;
 use Psr\Container\ContainerInterface;
+use Salle\LSocial\Controller\CookieController;
+use Salle\LSocial\Controller\CreateUserController;
 use Salle\LSocial\Controller\HomeController;
 use Salle\LSocial\Controller\LoginController;
 use Salle\LSocial\Controller\RegisterController;
@@ -46,6 +48,26 @@ $container->set(
     RegisterController::class,
     function (Container $c) {
         $controller = new RegisterController($c->get("view"), $c->get(UserRepository::class));
+        return $controller;
+    }
+);
+
+
+
+$container->set(
+    CreateUserController::class,
+    function (Container $c) {
+        $controller = new CreateUserController($c->get("view"), $c->get(UserRepository::class));
+        return $controller;
+    }
+);
+
+
+
+$container->set(
+    CookieController::class,
+    function (Container $c) {
+        $controller = new CookieController($c->get("view"));
         return $controller;
     }
 );
