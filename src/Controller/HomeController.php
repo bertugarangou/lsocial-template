@@ -13,14 +13,12 @@ final class HomeController
     private Twig $twig;
 
 
-    public function __construct(Twig $twig)
-    {
+    public function __construct(Twig $twig){
         $this->twig = $twig;
     }
 
-    public function showHome(Request $request, Response $response)
-    {
-
+    public function showHome(Request $request, Response $response){
+/*
         if (!isset($_SESSION['id'])) { #is not set
             $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
@@ -33,10 +31,8 @@ final class HomeController
                 ]
             );
         } else {#is set OK
-
-            return $this->twig->render(
-                $response,
-                'home.twig', []);
+*/
+            return $this->twig->render($response,'home.twig', []);
         }
-    }
+    //}
 }

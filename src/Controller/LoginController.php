@@ -21,7 +21,7 @@ final class LoginController{
             'login.twig',
             [
                 'formAction' => $routeParser->urlFor("loginGET"),
-                'formMethod' => "GET"
+                'formMethod' => "POST"
             ]
         );
     }
@@ -65,10 +65,12 @@ final class LoginController{
                 );
             }else{
 
-                return $response
-                    ->withHeader('Location', '/home')
-                    ->withStatus(302);
-
+                session_start();
+                $_SESSION['id'] = $tmpID;
+                return $this->twig->render($response,'home.twig',[
+                    'formMethod' => "GET"
+                ]); #TODO: canviar link
+                #TODO: no funciona el guardar sessió
             }
 
         } else {
