@@ -10,7 +10,9 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 final class StartSessionMiddleware{
     public function __invoke(Request $request, RequestHandler $next): Response{
 
+
         session_start();
+
         return $next->handle($request);
     }
 }

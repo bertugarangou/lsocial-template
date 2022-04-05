@@ -72,6 +72,6 @@ final class MySQLUserRepository implements UserRepository
         if(strcmp($passwd, $res[0]) != 0){
             return -1;
         }
-        return $res[1];
+        return intval($res[1]);
     }
 }

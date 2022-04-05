@@ -6,6 +6,7 @@ use Psr\Container\ContainerInterface;
 use Salle\LSocial\Controller\HomeController;
 use Salle\LSocial\Controller\LoginController;
 use Salle\LSocial\Controller\RegisterController;
+use Salle\LSocial\Middleware\StartSessionMiddleware;
 use Salle\LSocial\Model\Repository\MySQLUserRepository;
 use Salle\LSocial\Model\Repository\PDOSingleton;
 use Salle\LSocial\Model\UserRepository;

@@ -18,21 +18,7 @@ final class HomeController
     }
 
     public function showHome(Request $request, Response $response){
-/*
-        if (!isset($_SESSION['id'])) { #is not set
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-
-            return $this->twig->render(
-                $response,
-                'login.twig',
-                [
-                    'formAction' => $routeParser->urlFor("loginPOST"),
-                    'formMethod' => "GET"
-                ]
-            );
-        } else {#is set OK
-*/
-            return $this->twig->render($response,'home.twig', []);
-        }
-    //}
+        if (!isset($_SESSION['id'])) return $response->withHeader('Location', '/sign-in')->withStatus(302);
+        else return $this->twig->render($response,'home.twig', []);
+    }
 }
