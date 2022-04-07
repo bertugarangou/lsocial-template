@@ -71,7 +71,7 @@ final class RegisterController{
 
             return $response
                 ->withHeader('Location', '/sign-in')
-                ->withStatus(302);
+                ->withStatus(200);
 
 
         }else {#errors sad uwu

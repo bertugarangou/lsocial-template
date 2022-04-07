@@ -23,13 +23,5 @@ final class HomeController
         else return $this->twig->render($response,'home.twig', []);
     }
 
-    /*
-    public function handleFormSubmission(Request $request, Response $response)
-    {
-        session_destroy();
-        $_SESSION['id'] = null;
-        unset($_SESSION['id']);
 
-        return $response->withHeader('Location', '/')->withStatus(302);
-    }*/
 }

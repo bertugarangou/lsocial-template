@@ -38,7 +38,7 @@ final class LoginController{
         } else if ($this->emailLassallista($data['email']) == false) {
             $errors['email'] = 'Only emails from the domain @salle.url.edu are accepted';
         } else if ($this->SQLRepo->checkEmailExists($data['email']) == false) {
-            $errors['email'] = 'User with this email address does not exist';
+            $errors['email'] = 'User with this email address does not exist.';
         }
 
         if (empty($data['passwd']) || strlen($data['passwd']) < 5) {
@@ -69,7 +69,7 @@ final class LoginController{
                 $_SESSION['id'] = $tmpID;
                 return $response
                     ->withHeader('Location', '/')
-                    ->withStatus(302);
+                    ->withStatus(200);
             }
 
         } else {
