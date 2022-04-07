@@ -91,9 +91,19 @@ final class RegisterController{
         }
     }
     private function validateDate($birthday): bool{
-        if(is_string($birthday)) $birthday = strtotime($birthday);
-        if($birthday - time() >= -86400) return false; # si es tria el dia actual dona error, that's ok
-        return true;
+
+        $exploded = explode('/',$birthday);
+        if(count($exploded) != 3 || !is_numeric($exploded[0]) || !is_numeric($exploded[1]) || !is_numeric($exploded[2]) || !strtotime($birthday)) {
+            return false;#no té el format de data
+        }else {
+            if(checkdate(intval($exploded[1]), intval($exploded[0]), intval($exploded[2])) == false){
+                return false; # numeros incorrectes (rangs, febrer...)
+
+            }
+            $birthday = strtotime($birthday);
+            if (time() - $birthday < 86400) return false; # si data > dia_actual
+            return true;
+        }
     }
 
     private function validateAge($birthday):bool{
