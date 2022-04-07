@@ -34,17 +34,17 @@ final class LoginController{
         $errors = [];
 
         if (empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'The email address is not valid.';
+            $errors['email'] = 'The email address is not valid';
         } else if ($this->emailLassallista($data['email']) == false) {
-            $errors['email'] = 'Only emails from the domain @salle.url.edu are accepted.';
+            $errors['email'] = 'Only emails from the domain @salle.url.edu are accepted';
         } else if ($this->SQLRepo->checkEmailExists($data['email']) == false) {
-            $errors['email'] = 'User with this email address does not exist.';
+            $errors['email'] = 'User with this email address does not exist';
         }
 
         if (empty($data['passwd']) || strlen($data['passwd']) < 5) {
-            $errors['passwd'] = 'The password must contain at least 6 characters.';
+            $errors['passwd'] = 'The password must contain at least 6 characters';
         } else if (preg_match('/[A-Z]/', $data['passwd']) != 1 || preg_match('/[a-z]/', $data['passwd']) != 1 || preg_match('/[0-9]/', $data['passwd']) != 1) {
-            $errors['passwd'] = 'The password must contain both upper and lower case letters and numbers.';
+            $errors['passwd'] = 'The password must contain both upper and lower case letters and numbers';
         }
 
         if (count($errors) == 0) {#està nais 👌

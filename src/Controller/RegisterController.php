@@ -37,19 +37,19 @@ final class RegisterController{
         #mirar email
 
         if(empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
-            $errors['email'] = 'The email address is not valid.';
+            $errors['email'] = 'The email address is not valid';
         }else if($this->emailLassallista($data['email']) == false){
-            $errors['email'] = 'Only emails from the domain @salle.url.edu are accepted.';
+            $errors['email'] = 'Only emails from the domain @salle.url.edu are accepted';
         }else if($this->SQLRepo->checkEmailExists($data['email']) == true){
-            $errors['email'] = 'User already exists. Email must be unique.';
+            $errors['email'] = 'User already exists. Email must be unique';
         }
 
 
         #mirar contra
         if(empty($data['passwd']) || strlen($data['passwd']) < 5){
-            $errors['passwd'] = 'The password must contain at least 6 characters.';
+            $errors['passwd'] = 'The password must contain at least 6 characters';
         }else if(preg_match('/[A-Z]/',$data['passwd']) != 1 || preg_match('/[a-z]/',$data['passwd']) != 1 || preg_match('/[0-9]/',$data['passwd']) != 1){
-            $errors['passwd'] = 'The password must contain both upper and lower case letters and numbers.';
+            $errors['passwd'] = 'The password must contain both upper and lower case letters and numbers';
         }else if(strcmp($data['passwd'], $data['passwd2']) != 0){
             $errors['passwd'] = 'Passwords are not equal';
         }
@@ -57,9 +57,9 @@ final class RegisterController{
         #mirar birthdate
         if(!empty($data['birth'])){
             if($this->validateDate($data['birth']) == false){
-                $errors['birth'] = 'Birthday is invalid.';
+                $errors['birth'] = 'Birthday is invalid';
             }else if($this->validateAge($data['birth']) == false){
-                $errors['birth'] = 'Sorry, you are underage.';
+                $errors['birth'] = 'Sorry, you are underage';
             }
         }
 
