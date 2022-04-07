@@ -17,8 +17,19 @@ final class HomeController
         $this->twig = $twig;
     }
 
-    public function showHome(Request $request, Response $response){
+    public function showHome(Request $request, Response $response)
+    {
         if (!isset($_SESSION['id'])) return $response->withHeader('Location', '/sign-in')->withStatus(302);
         else return $this->twig->render($response,'home.twig', []);
     }
+
+    /*
+    public function handleFormSubmission(Request $request, Response $response)
+    {
+        session_destroy();
+        $_SESSION['id'] = null;
+        unset($_SESSION['id']);
+
+        return $response->withHeader('Location', '/')->withStatus(302);
+    }*/
 }
