@@ -44,7 +44,7 @@ final class MySQLUserRepository implements UserRepository
 
         if(!empty($user->getBirthday())) {
             $birthdate = $user->getBirthday();
-            $birthdate = str_replace('/', "-", $birthdate);
+            //$birthdate = str_replace('/', "-", $birthdate);
             $birthdate = date('y-m-d',strtotime($birthdate));
 
             $statement->bindParam('birthday', $birthdate, PDO::PARAM_STR);

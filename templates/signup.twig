@@ -28,7 +28,7 @@
         <!--No s'hauria de guardar la contra però l'enunciat diu que tot. Estic trist ^^'.-->
 
         <label for="birth">Birthdate (optional): </label>
-        <input data-cy="sign-in__birthday" type="text" id="birth" placeholder="dd/MM/YYYY" name="birth" value="{% if formData.birth %}{{ formData.birth }}{% endif %}">
+        <input data-cy="sign-in__birthday" type="text" id="birth" placeholder="YYYY-mm-dd" name="birth" value="{% if formData.birth %}{{ formData.birth }}{% endif %}">
         {% if formErrors.birth %}
             <p data-cy="sign-up__wrongBirthday" style="color: red;">{{ formErrors.birth }}</p>
         {% endif %}

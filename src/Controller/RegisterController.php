@@ -95,11 +95,11 @@ final class RegisterController{
     }
     private function validateDate($birthday): bool{
 
-        $exploded = explode('/',$birthday);
+        $exploded = explode('-',$birthday);
         if(count($exploded) != 3 || !is_numeric($exploded[0]) || !is_numeric($exploded[1]) || !is_numeric($exploded[2])) {#que tots siguin nombres
             return false;#no té el format de data
         }else {
-            if(checkdate(intval($exploded[1]), intval($exploded[0]), intval($exploded[2])) == false){
+            if(checkdate(intval($exploded[1]), intval($exploded[2]), intval($exploded[0])) == false){
                 return false; # numeros incorrectes (rangs, febrer...)
             }
             return true;
