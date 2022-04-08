@@ -51,7 +51,7 @@ final class LoginController{
 
             $tmpID = $this->SQLRepo->checkPasswd($data['passwd'], $data['email']);
             if($tmpID == -1) {
-                $errors['passwd'] = 'Your email and/or password are incorrect';
+                $errors['passwd'] = 'Your email and/or password are incorrect.';
                 $routeParser = RouteContext::fromRequest($request)->getRouteParser();
                 return $this->twig->render(
                     $response,
