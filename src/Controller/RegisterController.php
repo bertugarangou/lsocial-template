@@ -48,11 +48,14 @@ final class RegisterController{
         #mirar contra
         if(empty($data['passwd']) || strlen($data['passwd']) < 5){
             $errors['passwd'] = 'The password must contain at least 6 characters';
-        }else if(preg_match('/[A-Z]/',$data['passwd']) != 1 || preg_match('/[a-z]/',$data['passwd']) != 1 || preg_match('/[0-9]/',$data['passwd']) != 1){
-            $errors['passwd'] = 'The password must contain both upper and lower case letters and numbers';
-        }else if(strcmp($data['passwd'], $data['passwd2']) != 0){
-            $errors['passwd'] = 'Passwords are not equal';
+        }else if(strcmp($data['passwd'], $data['passwd2']) != 0) {
+            $errors['passwd'] = 'Passwords do not match';
         }
+        else if(preg_match('/[A-Z]/',$data['passwd']) != 1 || preg_match('/[a-z]/',$data['passwd']) != 1 || preg_match('/[0-9]/',$data['passwd']) != 1){
+            $errors['passwd'] = 'The password must contain both upper and lower case letters and numbers';
+        }
+
+
 
         #mirar birthdate
         if(!empty($data['birth'])){
