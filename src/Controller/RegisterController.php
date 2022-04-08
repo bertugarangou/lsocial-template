@@ -93,7 +93,7 @@ final class RegisterController{
     private function validateDate($birthday): bool{
 
         $exploded = explode('/',$birthday);
-        if(count($exploded) != 3 || !is_numeric($exploded[0]) || !is_numeric($exploded[1]) || !is_numeric($exploded[2]) /*|| !strtotime($birthday)*/) {#que tots siguin nombres
+        if(count($exploded) != 3 || !is_numeric($exploded[0]) || !is_numeric($exploded[1]) || !is_numeric($exploded[2])) {#que tots siguin nombres
             return false;#no té el format de data
         }else {
             if(checkdate(intval($exploded[1]), intval($exploded[0]), intval($exploded[2])) == false){
@@ -104,11 +104,7 @@ final class RegisterController{
     }
 
     private function validateAge($birthday):bool{
-        if(!strtotime($birthday)){
-            return false;
-        }else{
-            $birthday = strtotime($birthday);
-        }
+        $birthday = strtotime($birthday);
         if(time() - $birthday < 18 * 31556926) return false;
         return true;
     }

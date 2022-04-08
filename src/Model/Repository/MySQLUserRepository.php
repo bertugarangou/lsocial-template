@@ -43,8 +43,11 @@ final class MySQLUserRepository implements UserRepository
         $statement->bindParam('updated_at', $date, PDO::PARAM_STR);
 
         if(!empty($user->getBirthday())) {
-            $birthday = $user->getBirthday();
-            $statement->bindParam('birthday', $birthday, PDO::PARAM_STR);
+            $birthdate = $user->getBirthday();
+            $birthdate = str_replace('/', "-", $birthdate);
+            $birthdate = date('y-m-d',strtotime($birthdate));
+
+            $statement->bindParam('birthday', $birthdate, PDO::PARAM_STR);
         }
 
         $statement->execute();
