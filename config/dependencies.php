@@ -54,7 +54,7 @@ $container->set(
 $container->set(
     HomeController::class,
     function (Container $c) {
-        $controller = new HomeController($c->get("view"));
+        $controller = new HomeController($c->get("view"),$c->get(UserRepository::class));
         return $controller;
     }
 );

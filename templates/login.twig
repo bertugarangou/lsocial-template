@@ -1,7 +1,11 @@
 {% extends 'base.twig' %}
 
 {% block title %}Sign-in{% endblock %}
-
+{%  block head %}
+    {% if newuser is empty %}
+        <p>No account? <a href="/sign-up">Register</a></p>
+    {% endif %}
+{%  endblock %}
 {% block content %}
     <form data-cy="sign-in"  action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8">
 

@@ -10,9 +10,16 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 final class LoginController{
+
+    private ?string $newuser = NULL;
+
     public function __construct(private Twig $twig,private MySQLUserRepository $SQLRepo){}
 
     public function showForm(Request $request, Response $response): Response{
+
+        if(isset($_SESSION['id'])){
+            $this->newuser = "set";
+        }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
@@ -21,7 +28,8 @@ final class LoginController{
             'login.twig',
             [
                 'formAction' => $routeParser->urlFor("loginGET"),
-                'formMethod' => "POST"
+                'formMethod' => "POST",
+                'newuser' => $this->newuser
             ]
         );
     }
@@ -29,6 +37,10 @@ final class LoginController{
 
     public function handleFormSubmission(Request $request, Response $response): Response
     {
+        if(isset($_SESSION['id'])){
+            $this->newuser = "set";
+        }
+
         $data = $request->getParsedBody();
 
         $errors = [];
@@ -60,7 +72,8 @@ final class LoginController{
                         'formErrors' => $errors,
                         'formData' => $data,
                         'formAction' => $routeParser->urlFor("loginPOST"),
-                        'formMethod' => "POST"
+                        'formMethod' => "POST",
+                        'newuser' => $this->newuser
                     ]
                 );
             }else{
@@ -81,7 +94,8 @@ final class LoginController{
                     'formErrors' => $errors,
                     'formData' => $data,
                     'formAction' => $routeParser->urlFor("loginPOST"),
-                    'formMethod' => "POST"
+                    'formMethod' => "POST",
+                    'newuser' => $this->newuser
                 ]
             );
         }

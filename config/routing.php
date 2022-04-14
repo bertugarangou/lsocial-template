@@ -11,7 +11,7 @@ use Salle\LSocial\Middleware\StartSessionMiddleware;
 $app->add(StartSessionMiddleware::class);
 
 $app->get('/', HomeController::class . ':showHome')->setName('home');
-//$app->post('/', HomeController::class . ':handleFormSubmission')->setName('homeLogout');
+
 
 $app->get('/sign-up', RegisterController::class . ":showForm")->setName('registerGET');
 $app->post('/sign-up', RegisterController::class . ":handleFormSubmission")->setName('registerPOST');

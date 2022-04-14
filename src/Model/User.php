@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Salle\LSocial\Model;
 
-use DateTime;
-
 final class User
 {
     private int $id;

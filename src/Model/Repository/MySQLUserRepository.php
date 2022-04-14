@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Salle\LSocial\Model\Repository;
 
-use Exception;
+
 use PDO;
 use Salle\LSocial\Model\User;
 use Salle\LSocial\Model\UserRepository;
@@ -76,5 +76,11 @@ final class MySQLUserRepository implements UserRepository
             return -1;
         }
         return intval($res[1]);
+    }
+    public function getUsername(int $id):string{
+        $stat = $this->database->connection()->prepare('SELECT email FROM users WHERE id=?');
+        $stat->bindParam(1,$id,PDO::PARAM_INT);
+        $stat->execute();
+        return ($stat->fetch())[0];
     }
 }
